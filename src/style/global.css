@@ -1,0 +1,19 @@
+.error-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .error-heading {
+    font-size: 72px;
+    color: red;
+  }
+  
+  .error-paragraph {
+    font-size: 24px;
+  }
+  
+  .error-link {
+    font-size: 18px;
+    color: blue;
+    text-decoration: underline;
+  }

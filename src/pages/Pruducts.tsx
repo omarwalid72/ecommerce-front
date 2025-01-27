@@ -2,8 +2,11 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "@store/hooks";
 import { actGetProductsByCatPrifix, ProductsCleanUp } from "@store/products/productsSlice";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container} from "react-bootstrap";
 import { Product } from "@components/eCommerce";
+import { Loading } from "@components/feedback";
+import { GridList } from "@components/common";
+
 const Products = () => {
   const params = useParams();
   const dispatch = useAppDispatch();
@@ -17,21 +20,14 @@ const Products = () => {
     };
   }, [dispatch, params]);
 
-  const renderProducts = 
-  records.length > 0 ? 
-    records.map((record) => (
-      <Col xs={6} md={3} key={record.id} className="d-flex justify-content-center mb-5 mt-2">
-        <Product {...record}/>
-      </Col>
-    ))
-   : <p>There are no products</p>
+ 
   
  
   return (
     <Container>
-      <Row>
-        {renderProducts}
-      </Row>
+      <Loading status={loading} error={error}>
+        <GridList records={records} renderItem={(record) => <Product {...record} />} />
+      </Loading>
     </Container>
   );
 };
